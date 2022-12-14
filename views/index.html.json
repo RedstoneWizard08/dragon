@@ -1,0 +1,8 @@
+{
+    "scripts": [
+        "ts/index.ts"
+    ],
+    "styles": [
+        "scss/index.scss"
+    ]
+}
