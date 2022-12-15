@@ -9,7 +9,6 @@ require (
 	github.com/gofiber/template v1.7.3
 	github.com/joho/godotenv v1.4.0
 	github.com/pelletier/go-toml/v2 v2.0.6
-	github.com/wellington/go-libsass v0.9.2
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -23,6 +22,5 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.43.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/net v0.4.0 // indirect
 	golang.org/x/sys v0.3.0 // indirect
 )

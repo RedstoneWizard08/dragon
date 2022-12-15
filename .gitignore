@@ -41,3 +41,6 @@ views/css/*
 
 views/js/*
 !views/js/.gitkeep
+
+scripts/depot_tools
+scripts/dart

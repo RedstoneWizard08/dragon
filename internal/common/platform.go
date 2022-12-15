@@ -1,6 +1,7 @@
 package common
 
 import (
+	"os"
 	"runtime"
 )
 
@@ -43,4 +44,14 @@ func GetArch() Arch {
 	}
 
 	return -1
+}
+
+func GetWorkingDirectory() string {
+	wd, err := os.Getwd()
+
+	if err != nil {
+		return "./"
+	}
+
+	return wd
 }

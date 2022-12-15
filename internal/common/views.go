@@ -1,6 +1,8 @@
 package common
 
-import "io/fs"
+import (
+	"io/fs"
+)
 
 var ViewsFS fs.FS
 
