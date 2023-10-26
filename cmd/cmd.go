@@ -46,7 +46,6 @@ func Exit(config config.Config) {
 
 	go func() {
 		sig := <-code
-
 		log := logger.New("SHUTDOWN")
 
 		log.Info(fmt.Sprintf("Got %s signal. Shutting down...", sig))
