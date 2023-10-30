@@ -1,3 +1,3 @@
-# GoDragon
+# Dragon Panel
 
-An alternative to the Pterodactyl control panel, written in Go, TypeScript, and SASS.
+A simple, blazingly fast, effortlessly secure, and extensible game server control panel.
