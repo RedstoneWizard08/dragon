@@ -69,6 +69,18 @@ diesel::table! {
 
 diesel::table! {
     use diesel::sql_types::*;
+
+    template_groups (id) {
+        id -> Int4,
+        #[max_length = 36]
+        uuid -> Bpchar,
+        name -> Text,
+        description -> Text,
+    }
+}
+
+diesel::table! {
+    use diesel::sql_types::*;
     use super::sql_types::Vartype;
 
     template_vars (id) {
@@ -104,6 +116,7 @@ diesel::table! {
         startup_message -> Nullable<Text>,
         log_file -> Nullable<Text>,
         custom_log_file -> Bool,
+        group_id -> Int4,
     }
 }
 
@@ -136,12 +149,14 @@ diesel::joinable!(servers -> templates (template));
 diesel::joinable!(servers -> users (owner_id));
 diesel::joinable!(template_file_configs -> templates (template));
 diesel::joinable!(template_vars -> templates (template));
+diesel::joinable!(templates -> template_groups (group_id));
 diesel::joinable!(tokens -> users (user_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
     nodes,
     servers,
     template_file_configs,
+    template_groups,
     template_vars,
     templates,
     tokens,

@@ -23,6 +23,7 @@ pub struct Template {
     pub startup_message: Option<String>,
     pub log_file: Option<String>,
     pub custom_log_file: bool,
+    pub group_id: i32,
 }
 
 #[derive(Debug, Clone, Queryable, Selectable, Identifiable, Insertable)]
