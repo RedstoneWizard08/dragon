@@ -1,0 +1,10 @@
+[workspace]
+resolver = "2"
+members = [
+    "apps/api-server",
+    "apps/server",
+    "crates/db",
+    "crates/auth",
+    "crates/docker",
+    "crates/glue"
+]

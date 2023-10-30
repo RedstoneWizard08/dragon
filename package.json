@@ -1,0 +1,10 @@
+{
+  "name": "dragon",
+  "version": "0.0.0",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "crates/*"
+  ]
+}
