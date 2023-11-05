@@ -8,32 +8,20 @@ use api_server::middleware::logger::logging_middleware;
 use axum::{middleware::from_fn, Router, Server};
 use dotenvy::dotenv;
 use glue::{register_glue, GlueOpts};
-use include_dir::Dir;
+
+#[cfg(debug_assertions)]
+mod client;
 
 #[cfg(not(debug_assertions))]
-pub const CLIENT_DIR: Option<Dir<'static>> = Some(include_dir::include_dir!(
-    "$CARGO_MANIFEST_DIR/../client/out"
-));
+mod client {
+    use include_dir::{Dir, include_dir};
 
-#[cfg(debug_assertions)]
-pub const CLIENT_DIR: Option<Dir<'static>> = None;
+    #[cfg(not(debug_assertions))]
+    pub const CLIENT_DIR: Option<Dir<'static>> = Some(include_dir!(
+        "$CARGO_MANIFEST_DIR/../client/out"
+    ));
 
-#[cfg(debug_assertions)]
-pub fn start_client() {
-    use tokio::process::Command;
-
-    tokio::spawn(async {
-        let dir = format!("{}/../client", env!("CARGO_MANIFEST_DIR"));
-
-        Command::new("pnpm")
-            .arg("dev")
-            .current_dir(dir)
-            .spawn()
-            .unwrap()
-            .wait()
-            .await
-            .unwrap()
-    });
+    pub fn start() {}
 }
 
 #[tokio::main]
@@ -63,21 +51,14 @@ pub async fn main() -> Result<()> {
         router,
         GlueOpts::new()
             .base("http://localhost:4001")
-            .dir(CLIENT_DIR),
+            .dir(client::CLIENT_DIR),
     );
 
     let router = router.layer(from_fn(logging_middleware));
 
     let service = router.into_make_service_with_connect_info::<SocketAddr>();
 
-    #[cfg(debug_assertions)]
-    {
-        info!("Starting client...");
-
-        start_client();
-
-        info!("Started client!");
-    }
+    client::start();
 
     let app = server.serve(service);
 
