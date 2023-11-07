@@ -1,9 +1,6 @@
 #[macro_use]
 extern crate log;
 
-#[macro_use]
-extern crate duct;
-
 use std::{env, net::SocketAddr};
 
 use anyhow::Result;

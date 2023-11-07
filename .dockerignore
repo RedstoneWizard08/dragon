@@ -1,0 +1,17 @@
+target
+node_modules
+out
+.next
+next-env.d.ts
+*.md
+benches
+tests
+examples
+.git
+.gitignore
+.gitmodules
+.env
+.env.example
+rust-toolchain.toml
+setup.sh
+pnpm-lock.yaml

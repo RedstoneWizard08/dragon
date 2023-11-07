@@ -1,17 +1,16 @@
 "use client";
 
-import { Metadata } from "next";
 import styles from "./page.module.scss";
-import { createRef } from "react";
+import { createRef, useEffect } from "react";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-    title: "Login - Dragon Panel",
-};
 
 export default function Page() {
     const usernameRef = createRef<HTMLInputElement>();
     const passwordRef = createRef<HTMLInputElement>();
+
+    useEffect(() => {
+        document.title = "Login - Dragon Panel";
+    });
 
     return (
         <main className={styles.main}>
